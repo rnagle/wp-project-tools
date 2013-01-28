@@ -1,0 +1,3 @@
+[submodule "wp-tests"]
+	path = wp-tests
+	url = git@github.com:rnagle/wordpress-unit-tests.git

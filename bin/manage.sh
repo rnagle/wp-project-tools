@@ -83,6 +83,29 @@ then
     phpsh tools/cli-load.php
     killall tail
 
+elif [[ $command == "test" ]]
+then
+
+    if [[ ! -f `command -v phpunit` ]]
+    then
+        echo "Can't find phpunit. Please install it and try again: http://www.phpunit.de/manual/3.0/en/installation.html"
+        exit 0
+    fi
+
+    # Find our phpunit.xml config file
+    if [[ -f "$PROJECT_DIR/phpunit.xml" ]]
+    then
+        CONFIG="$PROJECT_DIR/phpunit.xml"
+    else
+        CONFIG="$PROJECT_DIR/tools/wp-tests/phpunit.xml"
+    fi
+
+    # Knock the first item off the arguments array
+    shift
+
+    # Run the tests
+    phpunit --configuration $CONFIG $@
+
 else
     # Find and run a WordPress script
     # TODO: Search active plugin and theme directories for the script
