@@ -54,6 +54,9 @@ ln -s tools/bin/manage.sh manage.sh
 # Move the fabfile stub into position
 cp tools/fabfile.py fabfile.py
 
+# Checkout WordPress Unit Tests
+cd $PROJECT_DIR/tools && git submodule update --init && cd $PROJECT_DIR
+
 # Commit
 git add .
 git commit -m "WordPress project setup"
